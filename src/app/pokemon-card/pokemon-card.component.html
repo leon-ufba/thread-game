@@ -1,0 +1,18 @@
+<div class="noselect relative w-[240px] mx-8 my-2 rounded-lg overflow-hidden shadow-md drop-shadow-md bg-white"
+    [ngClass]="{'aready-selected': disabled, 'bg-yellow-200': selected, 'cursor-pointer hover:bg-yellow-200': (!disabled && !selected && hover)}"
+    >
+  <div *ngIf="life !== undefined" class="flex items-center m-2">
+    <div class="flex w-full h-2 mr-2">
+      <div class="rounded-full" [ngStyle]="{'width': life + '%', 'background-color': lifeColor(life)}">
+      </div>
+    </div>
+    <span class="w-10 ml-auto text-end">{{life + '%'}}</span>
+  </div>
+  <img class="w-full" [src]="pokemon?.image">
+  <div class="flex flex-wrap px-6 py-4">
+    <span class="font-bold text-xl mb-2 mr-auto text-slate-800">{{pokemon?.name}}</span>
+    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2"
+    [ngClass]="{ 'text-green-700 bg-green-200': pokemon?.type === 'grass', 'text-orange-700 bg-orange-200': pokemon?.type === 'fire', 'text-blue-700 bg-blue-200': pokemon?.type === 'water'}"
+    >{{pokemon?.type}}</span>
+  </div>
+</div>

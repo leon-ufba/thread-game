@@ -1,0 +1,7 @@
+:host {
+  @apply flex flex-col flex-1 w-full h-full bg-neutral-50
+}
+
+.action-button {
+  @apply bg-indigo-400 w-24 py-2 my-4 text-white rounded-md
+}

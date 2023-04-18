@@ -1,0 +1,9 @@
+
+.aready-selected {
+  background-color: rgba(128, 128, 128, 0.75);
+  background-repeat: no-repeat;
+  background-size: cover;
+  > * {
+    mix-blend-mode: luminosity;
+  }
+}
