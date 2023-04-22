@@ -1,6 +1,13 @@
 
-<div class="flex w-full justify-center my-8">
+<div class="flex flex-col w-full items-center my-8">
   <span class="text-5xl font-bold text-slate-800">Pokemon Battle</span>
+  <div *ngIf="battleResult === undefined && !!playing" class="flex">
+    <span>Turn Clock:&nbsp;</span>
+    <span class="w-4 text-center">{{turnClock}}</span>
+  </div>
+  <div *ngIf="battleResult !== undefined" class="flex">
+    <span>{{battleResult}}</span>
+  </div>
 </div>
 
 <div *ngIf="!playing; else battle">
@@ -17,11 +24,26 @@
   
   <div class="flex flex-col items-center">
     <div class="flex">
-      <pokemon-card [pokemon]="pokemonMap?.[player?.pokemonName]" [life]="player?.life" [selected]="false" [disabled]="player?.life <= 0" [hover]="false"></pokemon-card>
-      <div class="flex flex-col">
+      <pokemon-card
+        [pokemon]="pokemonMap?.[player?.pokemonName]"
+        [life]="player?.life"
+        [energy]="player?.energy"
+        [isDefending]="player?.isDefending"
+        [selected]="false"
+        [disabled]="player?.life <= 0"
+        [hover]="false"
+      ></pokemon-card>
+      <div class="flex flex-col items-center w-[120px] my-2">
         <button class="action-button" (click)="attack()">Attack</button>
-        <button class="action-button">Deffense</button>
-        <button class="action-button">Load</button>
+        <button class="action-button" (click)="defense()">Deffense</button>
+        <button class="action-button" (click)="load()">Load</button>
+        <span class="mb-2">Actions:</span>
+        <div class="flex flex-col flex-1 w-full max-h-[128px] bg-slate-500 text-white px-2 py-1 rounded-lg custom-scroll">
+          <div class="flex" *ngFor="let act of player?.threads; let i = index">
+            <span class="w-4 text-center">{{i}}</span>
+            <span>&nbsp;-&nbsp;{{act}}</span>
+          </div>
+        </div>
       </div>
     </div>
   

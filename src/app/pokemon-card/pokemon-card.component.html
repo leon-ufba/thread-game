@@ -7,6 +7,13 @@
       </div>
     </div>
     <span class="w-10 ml-auto text-end">{{life + '%'}}</span>
+    <div class="flex items-center ml-2 min-w-[18px]">
+      <span *ngIf="!!isDefending" class="font-icon text-teal-500 text-lg">verified_user</span>
+    </div>
+    <div class="flex items-center ml-2 min-w-[36px]">
+      <span class="text-yellow-500 text-sm">{{energy}}</span>
+      <span class="font-icon text-yellow-500 text-lg">bolt</span>
+    </div>
   </div>
   <img class="w-full" [src]="pokemon?.image">
   <div class="flex flex-wrap px-6 py-4">

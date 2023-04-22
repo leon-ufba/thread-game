@@ -1868,3 +1868,15 @@ backend/venv/Scripts/pip3.exe
 backend/venv/Scripts/python.exe
 backend/venv/Scripts/pythonw.exe
 backend/__pycache__/main.cpython-39.pyc
+backend/venv/Lib/site-packages/importlib_metadata-6.5.0.dist-info/INSTALLER
+backend/venv/Lib/site-packages/importlib_metadata-6.5.0.dist-info/LICENSE
+backend/venv/Lib/site-packages/importlib_metadata-6.5.0.dist-info/METADATA
+backend/venv/Lib/site-packages/importlib_metadata-6.5.0.dist-info/RECORD
+backend/venv/Lib/site-packages/importlib_metadata-6.5.0.dist-info/top_level.txt
+backend/venv/Lib/site-packages/importlib_metadata-6.5.0.dist-info/WHEEL
+backend/venv/Lib/site-packages/simple_websocket-0.10.0.dist-info/INSTALLER
+backend/venv/Lib/site-packages/simple_websocket-0.10.0.dist-info/LICENSE
+backend/venv/Lib/site-packages/simple_websocket-0.10.0.dist-info/METADATA
+backend/venv/Lib/site-packages/simple_websocket-0.10.0.dist-info/RECORD
+backend/venv/Lib/site-packages/simple_websocket-0.10.0.dist-info/top_level.txt
+backend/venv/Lib/site-packages/simple_websocket-0.10.0.dist-info/WHEEL

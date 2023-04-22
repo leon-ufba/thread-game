@@ -8,6 +8,8 @@ import { Component, Input } from '@angular/core';
 export class PokemonCardComponent {
   @Input() pokemon!: any;
   @Input() life!: number;
+  @Input() energy: number = 0;
+  @Input() isDefending: number = 0;
   @Input() disabled: boolean = false;
   @Input() selected: boolean = false;
   @Input() hover: boolean = true;
@@ -17,6 +19,4 @@ export class PokemonCardComponent {
     const red = (life <= 50) ? 255 : Math.round(255 * (100 - life)/(100 - 50));
     return `rgb(${red},${green},0)`
   }
-
-  
 }

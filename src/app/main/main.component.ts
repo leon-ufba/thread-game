@@ -19,6 +19,10 @@ export class MainComponent implements OnInit {
   opponents: any;
   selectedPokemon: any;
 
+  battleResult: string | undefined;
+
+  turnClock: number = 0;
+
   playing = false;
 
   ws!: WebSocket;
@@ -37,10 +41,17 @@ export class MainComponent implements OnInit {
           this.opponents = content.filter((k: any) => k.playerId !== this.player.playerId);
           break;
         case 'turn':
+          this.turnClock = content.time;
           break;
         default: break;
       }
       this.playing = this.player?.pokemonName && this.opponents.length && this.opponents.every((k: any) => !!k.pokemonName) > 0;
+      if(this.playing) {
+        const allOpponentsDefeated = this.opponents.every((k: any) => k?.life <= 0);
+        if(this.player?.life <= 0) this.battleResult = 'You Lose...'
+        else if(allOpponentsDefeated) this.battleResult = 'You Win!'
+        else this.battleResult = undefined
+      }
     });
   }
 
@@ -64,6 +75,22 @@ export class MainComponent implements OnInit {
   attack() {
     const msg = {
       action: 'attack',
+      content: '',
+    };
+    this.ws.send(JSON.stringify(msg));
+  }
+
+  defense() {
+    const msg = {
+      action: 'defense',
+      content: '',
+    };
+    this.ws.send(JSON.stringify(msg));
+  }
+
+  load() {
+    const msg = {
+      action: 'load',
       content: '',
     };
     this.ws.send(JSON.stringify(msg));
