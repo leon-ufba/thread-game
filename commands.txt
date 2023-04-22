@@ -1,6 +1,18 @@
+
+//////////////////////////////
+// TO RUN THE SERVER
+//////////////////////////////
+
 cd backend
 py -3 -m venv venv
 venv\Scripts\activate
 pip install Flask
 pip install flask_sock
 pip install flask-cors
+
+//////////////////////////////
+// TO START THE GAME
+//////////////////////////////
+
+Open the following link in browser:
+http://localhost:5000/

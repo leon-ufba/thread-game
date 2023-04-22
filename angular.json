@@ -17,6 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "baseHref": "/static/",
             "outputPath": "dist/pokemon",
             "index": "src/index.html",
             "main": "src/main.ts",

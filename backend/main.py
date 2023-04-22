@@ -5,6 +5,11 @@ from threading import Semaphore, Thread, Timer
 import json
 import uuid
 
+
+############################################################################################
+## VARIABLES, CONSTANTS & PARAMETERS
+############################################################################################
+
 app = Flask(__name__)
 cors = CORS(app)
 sock = Sock(app)
@@ -13,7 +18,20 @@ semaphore = Semaphore(1)
 
 clients = []
 
-# https://superfastpython.com/thread-semaphore/
+turn_time = 3
+time = turn_time
+
+actionDict = {
+  'defense':  0,
+  'load':     1,
+  'attack':   2,
+}
+
+super_effective = {
+  'grass': 'water',
+  'water': 'fire' ,
+  'fire' : 'grass',
+}
 
 pokemons = [
   {
@@ -33,6 +51,9 @@ pokemons = [
   },
 ]
 
+############################################################################################
+## FUNCTIONS
+############################################################################################
 
 def strfy(s):
   return str(s).replace('\'', '\"').replace('None', 'null')
@@ -83,8 +104,6 @@ def turn():
   t.setDaemon(True)
   t.start()
 
-turn_time = 4
-time = turn_time
 def sendTurn():
   global time, turn_time
   msg = strfy({
@@ -97,11 +116,6 @@ def sendTurn():
   time = time - 1
   broadcast(msg)
 
-actionDict = {
-  'defense':  0,
-  'load':     1,
-  'attack':   2,
-}
 def calcTurn():
   global clients, actionDict
   threadsToRun = []
@@ -118,12 +132,6 @@ def calcTurn():
   for st in sortedThreads:
     st.start()
 
-
-super_effective = {
-  'grass': 'water',
-  'water': 'fire' ,
-  'fire' : 'grass',
-}
 def attack(client):
   global semaphore, clients, super_effective
   if(client['life']   <= 0): return
@@ -196,6 +204,9 @@ def doAction(ws, action, content):
     saveThread(client, load, action)
     return
 
+############################################################################################
+## API ROUTES
+############################################################################################
 
 @app.get('/')
 def get_value():
@@ -240,5 +251,9 @@ def echo(ws):
         removeConn(ws)
         sendPlayersState()
         break
+
+############################################################################################
+## START TURN CLOCK
+############################################################################################
 
 turn()
