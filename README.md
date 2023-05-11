@@ -1,27 +1,26 @@
 # Pokemon
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.1.
+## Instruções de instalação do projeto
+### Instalando python
+Primeiramente, deve-ser ter instalado uma vesão do python3, superior a 3.7.0 (Foi testado utilizando python 3.10.11)
 
-## Development server
+### Instalando bibliotecas
+Entre na pasta back end
+```cd backend```
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Ative um ambiente, se for desejado
+```
+python -m venv venv
+venv\Scripts\activate
+```
 
-## Code scaffolding
+Instale as bibliotecas necessárias pelo projeto, utilizando a biblioteca pip
+```
+python -m pip install -r requirements.txt
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Iniciando o servidor e no jogo
+Para iniciar o servidor, simplesmente entre na pasta backend, e digite o comando
+```flask --app main run```
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Agora, para jogar, abra seu navegador, e entre o url localhost:5000
