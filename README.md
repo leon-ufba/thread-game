@@ -24,3 +24,4 @@ Para iniciar o servidor, simplesmente entre na pasta backend, e digite o comando
 ```flask --app main run```
 
 Agora, para jogar, abra seu navegador, e entre o url localhost:5000
+Para simular o modo multijogador, simplesmente abra multiplas abas com esse link, cada aba nova será um jogador novo
