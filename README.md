@@ -11,8 +11,11 @@
 Primeiramente, deve-ser ter instalado uma vesão do python3, superior a 3.7.0 (Foi testado utilizando python 3.10.11)
 
 ### Instalando bibliotecas
-Entre na pasta back end
-```cd backend```
+Entre na pasta backend
+
+```
+cd backend
+```
 
 Ative um ambiente, se for desejado
 ```
