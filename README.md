@@ -1,4 +1,10 @@
 # Pokemon
+#### Integrantes da Equipe
+- Daniel Carneiro
+- Fredson Menezes Sumi Barreto
+- Leon Santos
+- Yago Martins
+
 
 ## Instruções de instalação do projeto
 ### Instalando python
