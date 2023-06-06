@@ -1,7 +1,7 @@
 from flask import Flask, render_template
 from flask_cors import CORS, cross_origin
 from flask_sock import Sock
-from threading import Semaphore, Thread, Timer
+from threading import Lock, Thread, Timer
 import json
 import uuid
 
@@ -16,7 +16,7 @@ sock = Sock(app)
 
 # Apenas um thread por vez pode adquirir o semáforo e
 #  acessar o recurso compartilhado.
-semaphore = Semaphore(1)
+lock = Lock()
 
 clients = []
 
@@ -174,7 +174,7 @@ def calcTurn():
 
 def attack(client):
   """Ataca todos os jogador na rede"""
-  global semaphore, clients, super_effective
+  global lock, clients, super_effective
 
   # Caso o pokemon do cliente já tenha morrido, ou não tenha energia, não faça nada
   if (client['life'] <= 0): return
@@ -182,7 +182,7 @@ def attack(client):
 
   # controla o acesso dos recursos compartilhado de maneira thread-safe, apenas
   # um cliente por vez pode acessar e alterar os dados globais da aplicação
-  semaphore.acquire()
+  lock.acquire()
 
   # remove 1 de stamina do pokemon
   client['energy'] = client['energy'] - 1
@@ -213,21 +213,21 @@ def attack(client):
       # Aplica o dano ou cura ao oponente
       c['life'] = min(max(c['life'] - force, 0), 100)
   sendPlayersState()
-  semaphore.release()
+  lock.release()
 
 
 def defense(client):
   """Coloca o pokemon do jogador em modo de defesa"""
-  global semaphore
+  global lock
   if (client['life'] <= 0): return
 
   # controla o acesso dos recursos compartilhado de maneira thread-safe, apenas
   # um cliente por vez pode acessar e alterar os dados globais da aplicação
-  semaphore.acquire()
+  lock.acquire()
 
   client['isDefending'] = True
   sendPlayersState()
-  semaphore.release()
+  lock.release()
   return
 
 
@@ -235,12 +235,12 @@ def load(client):
   """Adiciona +1 de stamina"""
   # controla o acesso dos recursos compartilhado de maneira thread-safe, apenas
   # um cliente por vez pode acessar e alterar os dados globais da aplicação
-  semaphore.acquire()
+  lock.acquire()
 
   if (client['life'] <= 0): return
   client['energy'] = client['energy'] + 1
   sendPlayersState()
-  semaphore.release()
+  lock.release()
   return
 
 
